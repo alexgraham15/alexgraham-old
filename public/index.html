@@ -24,6 +24,26 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+<<<<<<< HEAD
+=======
+    <script>
+    window.addEventListener("load", function(){
+      var nodes = document.
+      querySelectorAll(".overlay");
+      for(var i=0; i<nodes.length; i++){
+        var words = nodes[i].innerText;
+        var html = "";
+        for(var i2=0; i2<words.length; i2++){
+          if(words[i2] == " ")html += 
+        words[i2];
+            else html += 
+        "<span>"+words[i2]+"</span>"
+        }
+        nodes[i].innerHTML = html;
+	    } 
+    });
+    </script>
+>>>>>>> 3e660db90cb8671a18528048a2d4b1a1da5dca2b
     <title>Alex Graham</title>
   </head>
   <body>
