@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import Experience from './Experience';
 
-function AboutUs() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          ABOUT US
-        </h1>
-        <p>
-          We are specialists in IT Contracting and website building.
-        </p>
-      </header>
-    </div>
-  );
+class AboutUs extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render(){
+    return (
+      <div>
+       {this.state.isScrolled && <Experience />}
+      </div>
+    );
+  }
 }
 
 export default AboutUs;

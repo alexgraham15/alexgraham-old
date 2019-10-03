@@ -1,15 +1,15 @@
+/* Basic page set up */
 .App {
   text-align: center;
   background-image: url('codeBackground.png');
 }
-
-.App-logo {
-  height: 40vmin;
-}
-
 .App-header {
-  background-color: #282c34;
-  background: linear-gradient(62deg, rgba(40,44,52,1) 70%, rgba(40,44,52,0.7021183473389356) 100%);
+  background-image: 
+  /* radial-gradient(ellipse farthest-corner at 0 140%, rgba(40,44,52,1) 0%, rgba(40,44,52,1) 70%, rgba(40,44,52,0.7021183473389356) 70%); */
+  radial-gradient(farthest-corner at 40px 40px,rgba(40,44,52,1) 75%, rgba(40,44,52,0.7021183473389356) 100%);
+
+  /* background-color: #282c34;
+  background: linear-gradient(62deg, rgba(40,44,52,1) 70%, rgba(40,44,52,0.7021183473389356) 100%); */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -18,65 +18,79 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .App-link {
   color: #09d3ac;
 }
-
 h1{
   font-weight: 100;
 }
 
-span {
-  display:inline-block;
-  overflow:hidden;
-  white-space:nowrap;
+/* Animation of Title text and sub title */
+.overlay span{
+  opacity: 0;
+}
+.overlay span:nth-child(5n){
+  animation: opcacityChange 3s forwards;
+  animation-delay: 0s; 
+}
+.overlay span:nth-child(5n+1){
+  animation: opcacityChange 4s forwards;
+  animation-delay: 1s; 
+}
+.overlay span:nth-child(5n+2){
+  animation: opcacityChange 2s forwards;
+  animation-delay: 2s; 
+}
+.overlay span:nth-child(5n+3){
+  animation: opcacityChange 4s forwards;
+  animation-delay: 3s; 
+}
+.overlay span:nth-child(5n+4){
+  animation: opcacityChange 2s forwards;
+  animation-delay: 4s; 
+}
+p{
+  opacity: 0;
+  animation: opcacityChange 3s forwards;
+  animation-delay: 5s; 
+}
+@keyframes opcacityChange {
+    0% { opacity:0;}
+    50% { opacity:0.3}
+    75% { opacity:0.5}
+    100% { opacity:1}
 }
 
-#firstname {    /* For increasing performance 
-                       ID/Class should've been used. 
-                       For a small demo 
-                       it's okaish for now */
-  animation: showup 7s;
-  animation-iteration-count: 1;
+/* Mouse down Icon Positioning and Animation */
+.scroll-link {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
 }
-
-#lastnameHolder {
-  width:0px;
-  animation: reveal 7s;
-  animation-iteration-count: 1;
+.mouse {
+  max-width: 2.5rem;
+  width: 100%;
+  height: auto;
 }
-
-#lastname{
-  margin-left:-355px;
-  animation: slidein 7s;
-  animation-iteration-count: 1;
+@keyframes scroll {
+  0%, 20% {
+  transform: translateY(0) scaleY(1);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(36px) scaleY(2);
+    opacity: 0.01;
+  }
 }
-
-@keyframes showup {
-    0% {opacity:0;}
-    20% {opacity:1;}
-    80% {opacity:1;}
-    100% {opacity:0;}
-}
-
-@keyframes slidein {
-    0% { margin-left:-800px; }
-    20% { margin-left:-800px; }
-    35% { margin-left:0px; }
-    100% { margin-left:0px; }
-}
-
-@keyframes reveal {
-    0% {opacity:0;width:0px;}
-    20% {opacity:1;width:0px;}
-    30% {width:355px;}
-    80% {opacity:1;}
-    100% {opacity:0;width:355px;}
-}
-
-
-p {
-  font-size:12px;
-  margin-top:200px;
+.scroll {
+  animation-name: scroll;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0.650, -0.550, 0.250, 1.500);
+  animation-iteration-count: infinite;
+  transform-origin: 50% 20.5px;
+  will-change: transform;
 }
