@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
-      name="A & A Graham Ltd IT Contracting, Webhosting and Website builders"
+      name="Alex Graham - IT Contracting, Webhosting and Full Stack Developer"
       content="IT Contracting, specilists in Node JS, React, AWS, Lambda, Cognito, Dynamodb, S3 and Wordpress"
     />
     <link rel="apple-touch-icon" href="logo192.png" />
@@ -24,10 +24,27 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>A &amp; A Graham Ltd</title>
+    <script>
+    window.addEventListener("load", function(){
+      var nodes = document.
+      querySelectorAll(".overlay");
+      for(var i=0; i<nodes.length; i++){
+        var words = nodes[i].innerText;
+        var html = "";
+        for(var i2=0; i2<words.length; i2++){
+          if(words[i2] == " ")html += 
+        words[i2];
+            else html += 
+        "<span>"+words[i2]+"</span>"
+        }
+        nodes[i].innerHTML = html;
+	    } 
+    });
+    </script>
+    <title>Alex Graham</title>
   </head>
   <body>
-    <noscript>Welcome to A &amp; A Graham Ltd.<br />Unfortunately you need to enable javascript for this website to work, after all we are in 2019!</noscript>
+    <noscript>Welcome to Alex Graham.<br />Unfortunately you need to enable javascript for this website to work, after all we are in 2019!</noscript>
     <div id="root"></div>
     <div id="iFirst"></div>
     <div id="experience"></div>
