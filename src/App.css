@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-image: url('codeBackground.png');
 }
 
 .App-logo {
@@ -8,6 +9,7 @@
 
 .App-header {
   background-color: #282c34;
+  background: linear-gradient(62deg, rgba(40,44,52,1) 70%, rgba(40,44,52,0.7021183473389356) 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,4 +21,62 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+h1{
+  font-weight: 100;
+}
+
+span {
+  display:inline-block;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+#firstname {    /* For increasing performance 
+                       ID/Class should've been used. 
+                       For a small demo 
+                       it's okaish for now */
+  animation: showup 7s;
+  animation-iteration-count: 1;
+}
+
+#lastnameHolder {
+  width:0px;
+  animation: reveal 7s;
+  animation-iteration-count: 1;
+}
+
+#lastname{
+  margin-left:-355px;
+  animation: slidein 7s;
+  animation-iteration-count: 1;
+}
+
+@keyframes showup {
+    0% {opacity:0;}
+    20% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0;}
+}
+
+@keyframes slidein {
+    0% { margin-left:-800px; }
+    20% { margin-left:-800px; }
+    35% { margin-left:0px; }
+    100% { margin-left:0px; }
+}
+
+@keyframes reveal {
+    0% {opacity:0;width:0px;}
+    20% {opacity:1;width:0px;}
+    30% {width:355px;}
+    80% {opacity:1;}
+    100% {opacity:0;width:355px;}
+}
+
+
+p {
+  font-size:12px;
+  margin-top:200px;
 }

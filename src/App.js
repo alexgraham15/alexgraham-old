@@ -6,13 +6,11 @@ function Hero() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+          <h1 id="nameAnimation">
+            <span id="firstname">Alex</span> <span id="lastnameHolder"><span id="lastname">Graham</span></span>
+          </h1>
         <p>
-          Welcome to<i id="titleCompany">A &amp; A Graham Ltd</i>IT Contractors and Website Builders.
-        </p>
-        <p>
-          Scroll Down<br/>
-          for more information
+          IT Contractor and Website Builder
         </p>
       </header>
     </div>
