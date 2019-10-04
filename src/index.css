@@ -1,3 +1,7 @@
+:root{
+  --global-background-color: #282c34;
+}
+
 @font-face {
   font-family: 'Alcubierre';
   font-style: normal;
@@ -11,7 +15,7 @@ body {
   font-family: "Alcubierre";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #282c34;
+  background: var(--global-background-color);
 }
 
 code {

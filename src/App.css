@@ -52,7 +52,7 @@ h1{
 p{
   opacity: 0;
   animation: opcacityChange 3s forwards;
-  animation-delay: 5s; 
+  animation-delay: 3s; 
 }
 @keyframes opcacityChange {
     0% { opacity:0;}
@@ -93,4 +93,7 @@ p{
   animation-iteration-count: infinite;
   transform-origin: 50% 20.5px;
   will-change: transform;
+}
+.mouse:hover .scroll{
+  animation-play-state: paused;
 }
