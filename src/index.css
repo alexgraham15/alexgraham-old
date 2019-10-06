@@ -7,7 +7,7 @@
   font-style: normal;
   font-weight: 100;
   src: local('Alcubierre'),
-       url('AlcubierreFF/Alcubierre.otf') format('opentype')
+       url('./Fonts/AlcubierreFF/Alcubierre.otf') format('opentype')
 }
 
 body {
