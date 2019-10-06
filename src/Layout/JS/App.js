@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './App.css';
+import '../CSS/App.css';
 
 class Hero extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class Hero extends Component {
             <span>Alex Graham</span>
           </h1>
         <p>
-          IT Contractor and Full Stack Developer
+          Full Stack Developer and IT Contractor
         </p>
         <svg class="mouse scroll-link" xmlns="..." viewBox="0 0 76 130" preserveAspectRatio="xMidYmid meet">
           <g fill="none" fill-rule="evenodd">

@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Hero from './App';
-import AboutUs from './AboutUs';
-import Experience from './Experience';
+import Hero from './Layout/JS/App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Hero />, document.getElementById('root'));
