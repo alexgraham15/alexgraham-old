@@ -1,55 +1,78 @@
 import React, { Component } from 'react'
-import '../CSS/App.css';
+import { fadeIn, fadeOut } from 'react-animations'
+import styled, { keyframes, css } from 'styled-components'
+import '../CSS/Hero.css'
 import { connect } from 'react-redux'
-import { userScroll } from '../../Actions/scrollActions'
+import { userScrollStart, userScrollFinish, userPageNumberIncrease } from '../../Actions/scrollActions'
+import { bindActionCreators } from 'redux'
+import Hero from './heroComponent'
+import Projects from './Projects'
 
+//Connector Properties and Dispatch Events
 function mapStateToProps(store) {
-  return { scrolling: store.pageLayout.scrolling };
+  return { 
+    scrolling: store.pageLayout.scrolling,
+    position: store.pagePosition.position,
+  }
 }
-
-class Hero extends Component {
-
+function mapDispatchToProps(dispatch) { 
+  return { 
+    dispatch, 
+    userScrollStart:bindActionCreators(userScrollStart, dispatch),
+    userScrollFinish:bindActionCreators(userScrollFinish, dispatch),
+    userPageNumberIncrease:bindActionCreators(userPageNumberIncrease, dispatch),
+  } 
+}
+//CSS Animations to fade in and out
+const animationDelay = css`
+  animation-delay:3s;
+  opacity:0;
+`
+const FadeOut = styled.div`animation: ${keyframes`${fadeOut}`} 3s forwards; height:0px;`
+const FadeIn = styled.div`
+  animation: ${keyframes`${fadeIn}`} 3s forwards;
+  ${animationDelay}
+`
+//Main Class
+class MainContainer extends Component {
   componentDidMount() {
     //Add script for title animation
-    const script = document.createElement("script");
-    script.src = "/firstPage.js";
-    script.async = true;
-    script.type = "text/javascript";
-    document.body.appendChild(script);
-    //Add scroll event listener to enable Hero component to be removed on scroll
-    window.addEventListener('scroll', this.handleScroll, true);
+    const script = document.createElement("script")
+    script.src = "/firstPage.js"
+    script.async = true
+    script.type = "text/javascript"
+    document.body.appendChild(script)
   }
-
   componentWillScroll(){
-    this.props.dispatch(userScroll())
+      this.props.userScrollStart()
+      this.props.userPageNumberIncrease()
   }
-
-  componentWillUnmount() {
-    //Remove scroll event listener to prevent false removal 
-    window.removeEventListener('scroll', this.handleScroll);
-  };
 
   render(){
-    console.log(this.props.scrolling)
-    return (
-    <div className="App" ref={el => (this.instance = el)} >
-      <header className="App-header">
-          <h1 class="overlay">
-            <span>Alex Graham</span>
-          </h1>
-        <p>
-          Full Stack Developer and IT Contractor
-        </p>
-        <svg onClick={this.componentWillScroll.bind(this)} class="mouse scroll-link" xmlns="..." viewBox="0 0 76 130" preserveAspectRatio="xMidYmid meet">
-          <g fill="none" fill-rule="evenodd">
-            <rect width="70" height="118" x="1.5" y="1.5" stroke="#FFF" stroke-width="3" rx="36"/>
-            <circle class="scroll" cx="36.5" cy="31.5" r="4.5" fill="#FFF"/>
-          </g>
-        </svg>
-      </header>
-    </div>
-    )
-  };
+    console.log(this.props)
+    if(!this.props.scrolling && this.props.position == 0){
+      return(
+        <div className="App" ref={el => (this.instance = el)}  onWheel = {(e) => this.componentWillScroll(e)}>
+          <Hero scrolling={this.props.scrolling} props={this.props}></Hero> 
+        </div>
+      )
+    }else if(this.props.scrolling && this.props.position == 1){
+      return(
+        <div className="App" ref={el => (this.instance = el)}  onWheel = {(e) => this.componentWillScroll(e)}>
+        <FadeOut>
+          <Hero scrolling={this.props.scrolling} props={this.props}></Hero>
+        </FadeOut>
+        <FadeIn>
+          <Projects scrolling={this.props.scrolling} props={this.props}></Projects>
+        </FadeIn>
+        </div>
+      )
+    }else{
+      return(
+        <div>End</div>
+      )
+    }
+  }
 }
 
-export default connect(mapStateToProps)(Hero);
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer)

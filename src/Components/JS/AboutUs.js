@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Experience from './Experience';
+import Experience from './Projects';
 
 class AboutUs extends Component {
   constructor(props) {

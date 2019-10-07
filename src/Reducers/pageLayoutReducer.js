@@ -5,6 +5,9 @@ export default function pageLayout(state={
         case "SCROLL_BEGIN": {
             return {...state, scrolling: action.payload}
         }
+        case "SCROLL_END": {
+            return {...state, scrolling: action.payload}
+        }
     }
     return state
 }

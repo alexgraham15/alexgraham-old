@@ -1,0 +1,19 @@
+/* Basic page set up */
+.Projects {
+    text-align: center;
+    background-color: #fff;
+  }
+.Projects-header {
+    background-image: 
+    radial-gradient(farthest-corner at 40px 40px,rgba(157, 173, 204,1) 75%, rgba(157, 173, 204,0.7021183473389356) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+h1{
+    font-weight: 100;
+}

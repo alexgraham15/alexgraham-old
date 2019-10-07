@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import pageLayout from './pageLayoutReducer'
-import pagePostion from './pagePositionReducer'
+import pagePosition from './pagePositionReducer'
 
 const reducer = combineReducers({
     pageLayout,
-    pagePostion
+    pagePosition
 })
 
 export default reducer
