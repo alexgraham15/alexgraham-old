@@ -4,6 +4,7 @@ import styled, { keyframes, css } from 'styled-components'
 import '../CSS/Hero.css'
 import { connect } from 'react-redux'
 import { userScrollStart, userScrollFinish, userPageNumberIncrease } from '../../Actions/scrollActions'
+import { openMenu, closeMenu } from '../../Actions/menuActions'
 import { bindActionCreators } from 'redux'
 import Hero from './heroComponent'
 import Projects from './Projects'
@@ -13,6 +14,7 @@ function mapStateToProps(store) {
   return { 
     scrolling: store.pageLayout.scrolling,
     position: store.pagePosition.position,
+    menu: store.menuLayout.menuOpen
   }
 }
 function mapDispatchToProps(dispatch) { 
@@ -21,6 +23,8 @@ function mapDispatchToProps(dispatch) {
     userScrollStart:bindActionCreators(userScrollStart, dispatch),
     userScrollFinish:bindActionCreators(userScrollFinish, dispatch),
     userPageNumberIncrease:bindActionCreators(userPageNumberIncrease, dispatch),
+    menuOpen:bindActionCreators(openMenu, dispatch),
+    menuClose:bindActionCreators(closeMenu, dispatch)
   } 
 }
 //CSS Animations to fade in and out
@@ -49,7 +53,6 @@ class MainContainer extends Component {
   }
 
   render(){
-    console.log(this.props)
     if(!this.props.scrolling && this.props.position == 0){
       return(
         <div className="App" ref={el => (this.instance = el)}  onWheel = {(e) => this.componentWillScroll(e)}>

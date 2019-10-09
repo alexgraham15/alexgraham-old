@@ -25,7 +25,7 @@ class Hero extends Component {
         return (
           <div className="Hero">
             <header className="Hero-header">
-                <Menu />
+                <Menu props={this.props}/>
                 <h1 className="overlay">
                   <span>Alex Graham</span>
                 </h1>

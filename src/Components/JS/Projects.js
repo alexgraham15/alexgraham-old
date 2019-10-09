@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../CSS/Projects.css';
+import Menu from './menuComponent'
 
 class Project extends Component {
   componentWillScroll(){
@@ -10,6 +11,7 @@ class Project extends Component {
     return (
       <div className="Projects">
         <header className="Projects-header">
+          <Menu props={this.props}/>
           <h1>
             PROJECTS
           </h1>
