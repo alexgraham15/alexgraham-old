@@ -1,11 +1,14 @@
 /* Basic page set up */
 .Projects {
     text-align: center;
-    background-color: #fff;
+    background-image: url('../../Images/skyBackground.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto;
   }
 .Projects-header {
     background-image: 
-    radial-gradient(farthest-corner at 40px 40px,rgba(157, 173, 204,1) 75%, rgba(157, 173, 204,0.7021183473389356) 100%);
+    radial-gradient(farthest-corner at 40px 40px,rgba(157, 173, 204,0.75) 25%, rgba(157, 173, 204,0.7021183473389356) 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -16,4 +19,11 @@
 }
 h1{
     font-weight: 100;
+}
+/* Mouse down Icon Positioning and Animation */
+.scroll-link-projects{
+    position: relative;
+    left: 0;
+    transform: none;
+    padding-top:10px; 
 }

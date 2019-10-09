@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { fadeIn } from 'react-animations'
 import styled, { keyframes, css } from 'styled-components'
+import Menu from './menuComponent'
 
 const animationDelay = css`
   animation-delay:6s;
@@ -24,6 +25,7 @@ class Hero extends Component {
         return (
           <div className="Hero">
             <header className="Hero-header">
+                <Menu />
                 <h1 className="overlay">
                   <span>Alex Graham</span>
                 </h1>
@@ -32,7 +34,7 @@ class Hero extends Component {
                   Full Stack Developer
                 </p>
               </FadeIn>
-              <svg onClick={this.componentWillScroll.bind(this)} className="mouse scroll-link" xmlns="..." viewBox="0 0 76 130" preserveAspectRatio="xMidYmid meet">
+              <svg onClick={this.componentWillScroll.bind(this)} className="mouse scroll-link scroll-link-hero" xmlns="..." viewBox="0 0 76 130">
                 <g fill="none" fillRule="evenodd">
                   <rect width="70" height="118" x="1.5" y="1.5" stroke="#FFF" strokeWidth="3" rx="36"/>
                   <circle className="scroll" cx="36.5" cy="31.5" r="4.5" fill="#FFF"/>
@@ -51,7 +53,7 @@ class Hero extends Component {
                 <p>
                   Full Stack Developer
                 </p>
-              <svg className="mouse scroll-link" xmlns="..." viewBox="0 0 76 130" preserveAspectRatio="xMidYmid meet">
+              <svg className="mouse scroll-link scroll-link-hero" xmlns="..." viewBox="0 0 76 130">
                 <g fill="none" fillRule="evenodd">
                   <rect width="70" height="118" x="1.5" y="1.5" stroke="#FFF" strokeWidth="3" rx="36"/>
                   <circle className="scroll" cx="36.5" cy="31.5" r="4.5" fill="#FFF"/>
