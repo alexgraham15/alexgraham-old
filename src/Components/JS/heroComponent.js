@@ -12,6 +12,10 @@ const FadeIn = styled.div`
   ${animationDelay}
 `
 
+const Container = styled.div({
+  width:"100%"
+})
+
 class Hero extends Component {
     componentWillScroll(){
         this.props.nav.userScrollStart()
@@ -22,7 +26,7 @@ class Hero extends Component {
       const scrolling = this.props.nav.scrolling
       if(!scrolling){
         return (
-          <div className={ this.props.nav.className }>
+          <Container className={ this.props.className }>
             <header className="Hero-header">
                 <h1 className="overlay">
                   <span>Alex Graham</span>
@@ -39,7 +43,7 @@ class Hero extends Component {
                 </g>
               </svg>
             </header>
-          </div>
+          </Container>
           )
       }else{
         return (

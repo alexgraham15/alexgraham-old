@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import '../CSS/Projects.css';
+import styled from 'styled-components'
+
+const Container = styled.div({
+  width:"100%"
+})
 
 class Project extends Component {
   componentWillScroll(){
@@ -8,7 +13,7 @@ class Project extends Component {
   }
   render(){
     return (
-      <div className={ this.props.nav.className }>
+      <Container className={ this.props.className }>
         <header className="Projects-header">
           <h1>
             PROJECTS
@@ -23,7 +28,7 @@ class Project extends Component {
             </g>
           </svg>
         </header>
-      </div>
+      </Container>
     );
   }
 }

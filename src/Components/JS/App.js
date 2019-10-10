@@ -11,6 +11,7 @@ import { bindActionCreators } from 'redux'
 import Hero from './heroComponent'
 import Projects from './Projects'
 import Menu from './menuComponent'
+const supportsHistory = 'pushState' in window.history;
 
 //Connector Properties and Dispatch Events
 function mapStateToProps(store) {
@@ -57,18 +58,40 @@ class MainContainer extends Component {
   }
 
   render(){
+    // const { pathname } = this.location;
+    
     return(
-      <Router>
-        <Route path="/" render={(props) => <Menu {...props} nav={this.props}/>}  />
-        <TransitionGroup>
-          <CSSTransition timeout={{ enter: 300, exit: 300 }}>
-            <Switch>
-              <Route exact path="/" render={(props) => <Hero className={"Hero "+this.props.menuVisable} {...props} nav={this.props}/>}  />
-              <Route exact path="/Projects" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}/>
-            </Switch>
-          </CSSTransition>
-        </TransitionGroup>
-      </Router>
+      
+        <Router forceRefresh={!supportsHistory} render={({ location }) => {
+          const { pathname } = location;
+          return (
+            // <Route path="/" render={(props) => <Menu {...props} nav={this.props}/>}  />
+            <TransitionGroup>
+              <CSSTransition 
+                key={pathname}
+                classNames="page"
+                timeout={{
+                  enter: 1000,
+                  exit: 1000,
+                }}
+              >
+          
+
+            <div className="App">
+              <Switch>
+                <Route exact path="/" render={(props) => <Hero className={"Hero "+this.props.menuVisable} {...props} nav={this.props}/>}  />
+                <Route exact path="/AboutMe" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}/>
+                <Route exact path="/Projects" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}/>
+                <Route exact path="/CV" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}/>
+                <Route exact path="/Contact" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}/>
+              </Switch>
+              </div>
+            </CSSTransition>
+          </TransitionGroup>
+          )}}
+          />
+        
+   
     )
     // if(!this.props.scrolling && this.props.position == 0){
     //   return(

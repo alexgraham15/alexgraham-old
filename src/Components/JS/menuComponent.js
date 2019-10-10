@@ -2,10 +2,14 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const Options = [
-  'About Me',
-  'Projects',
-  'CV',
-  'Contact'
+  {name:'About Me',
+  link:'/AboutMe'},
+  {name:'Projects',
+  link:'/Projects'},
+  {name:'CV',
+  link:'/CV'},
+  {name:'Contact',
+  link:'/Contact'}
 ]
 
 const MenuBar = styled.span({
@@ -67,37 +71,38 @@ const MenuOption = styled.h2({
   fontWeight:"100"
 })
 
-const MenuOptions = Options.map(function(item, i){
-  return <MenuOption key={i}>{item}</MenuOption>
-})
+
 
 class Menu extends Component {
-    
-    onMenuOpen(){
-      switch (this.props.nav.menu){
-        case true: {
-          this.menuVisable = "nav--open"
-          return this.props.nav.menuClose()
-        }
-        case false: {
-          this.menuVisable = ""
-          return this.props.nav.menuOpen()
-        }
-      } 
-    }
-    render(){
-      console.log(this)
-      return (
-        <MainMenuContainer className={this.menuVisable}>
-          <MenuOptionContainer className="menu">
-            {MenuOptions}
-          </MenuOptionContainer>
-          <MenuButton onClick={this.onMenuOpen.bind(this)}>   
-            <MenuBar />
-            <MenuBar />
-          </MenuButton>
-        </MainMenuContainer>
-      )
-    }
+   handleMenuSelect(link) {
+    this.props.history.push(`${link}`)
+  }
+  onMenuOpen(){
+    switch (this.props.nav.menu){
+      case true: {
+        this.menuVisable = "nav--open"
+        return this.props.nav.menuClose()
+      }
+      case false: {
+        this.menuVisable = ""
+        return this.props.nav.menuOpen()
+      }
+    } 
+  }
+  render(){
+    return (
+      <MainMenuContainer className={this.menuVisable}>
+        <MenuOptionContainer className="menu">
+          {Options.map(item => (
+            <MenuOption key={item.name} onClick={() => this.handleMenuSelect(item.link)}>{item.name}</MenuOption>
+          ))}
+        </MenuOptionContainer>
+        <MenuButton onClick={this.onMenuOpen.bind(this)}>   
+          <MenuBar />
+          <MenuBar />
+        </MenuButton>
+      </MainMenuContainer>
+    )
+  }
 }
 export default Menu
