@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { fadeIn } from 'react-animations'
 import styled, { keyframes, css } from 'styled-components'
-import Menu from './menuComponent'
 
 const animationDelay = css`
   animation-delay:6s;
@@ -15,17 +14,16 @@ const FadeIn = styled.div`
 
 class Hero extends Component {
     componentWillScroll(){
-        this.props.props.userScrollStart()
-        this.props.props.userPageNumberIncrease()
+        this.props.nav.userScrollStart()
+        this.props.nav.userPageNumberIncrease()
     }
     
     render(){
-      const scrolling = this.props.scrolling
+      const scrolling = this.props.nav.scrolling
       if(!scrolling){
         return (
-          <div className="Hero">
+          <div className={ this.props.nav.className }>
             <header className="Hero-header">
-                <Menu props={this.props}/>
                 <h1 className="overlay">
                   <span>Alex Graham</span>
                 </h1>
@@ -45,14 +43,14 @@ class Hero extends Component {
           )
       }else{
         return (
-          <div className="Hero">
+          <div className={ this.props.nav.className }>
             <header className="Hero-header">
-                <h1>
-                  <span>Alex Graham</span>
-                </h1>
-                <p>
-                  Full Stack Developer
-                </p>
+              <h1>
+                <span>Alex Graham</span>
+              </h1>
+              <p>
+                Full Stack Developer
+              </p>
               <svg className="mouse scroll-link scroll-link-hero" xmlns="..." viewBox="0 0 76 130">
                 <g fill="none" fillRule="evenodd">
                   <rect width="70" height="118" x="1.5" y="1.5" stroke="#FFF" strokeWidth="3" rx="36"/>

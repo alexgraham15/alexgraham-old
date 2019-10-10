@@ -27,3 +27,18 @@ h1{
     transform: none;
     padding-top:10px; 
 }
+
+/* Open and Close nav */
+.nav--open{
+    left: 0px;
+    transition: left 1.5s;
+}
+.container-full{
+    width:100%;
+    transition: width 1.5s ease;
+}
+.container-reduced{
+    width:calc(100% - 280px);
+    transition: width 1.5s ease;
+    align-self: flex-end;
+}

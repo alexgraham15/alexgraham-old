@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import '../CSS/Projects.css';
-import Menu from './menuComponent'
 
 class Project extends Component {
   componentWillScroll(){
-    this.props.props.userScrollStart()
-    this.props.props.userPageNumberIncrease()
+    this.props.nav.userScrollStart()
+    this.props.nav.userPageNumberIncrease()
   }
   render(){
     return (
-      <div className="Projects">
+      <div className={ this.props.nav.className }>
         <header className="Projects-header">
-          <Menu props={this.props}/>
           <h1>
             PROJECTS
           </h1>

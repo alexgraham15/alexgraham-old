@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
-import { fadeIn } from 'react-animations'
-import styled, { keyframes, css } from 'styled-components'
+import styled from 'styled-components'
+
+const Options = [
+  'About Me',
+  'Projects',
+  'CV',
+  'Contact'
+]
 
 const MenuBar = styled.span({
   width:"30px",
-  height:"1px",
+  height:"2px",
   backgroundColor:"#fff",
   margin: "auto",
   transform: "rotate(0deg) translateY(0px)",
@@ -20,44 +26,78 @@ const MenuButton = styled.div({
   justifyContent: "flex-start",
   position: "absolute",
   top:"30px",
-  left:"40px",
+  right:"0px",
   cursor:"pointer",
+  zIndex:"1",
   [`:hover ${MenuBar}:nth-child(1)`]: {
     transform: "rotate(45deg) translateY(10px)",
-    transitionDuration: "1s",
-    width:"40px"
+    transition: "width 1s, transform 1s ease",
+    width:"40px",
+    height:"2px"
   },
   [`:hover ${MenuBar}:nth-child(2)`]: {
     transform: "rotate(-45deg) translateY(-10px)",
-    transitionDuration: "1s",
-    width:"40px"
+    transition: "width 1s, transform 1s ease",
+    width:"40px",
+    height:"2px"
   }
 })
 
-const MainMenu = styled.div({
+const MainMenuContainer = styled.div({
+  backgroundColor:"clear",
+  position:"absolute",
+  top:"0px",
+  left:"-280px",
+  zIndex:"2",
+  width:"350px",
+  height:"100%",
+  transition: "left 1.5s ease",
+})
+const MenuOptionContainer = styled.div({
+  backgroundColor:"rgba(200,200,200,0.3)",
+  position:"absolute",
+  top:"0px",
+  left:"0px",
+  zIndex:"2",
+  width:"280px",
+  height:"100%"
+})
+const MenuOption = styled.h2({
+  color:"#fff",
+  fontWeight:"100"
+})
 
+const MenuOptions = Options.map(function(item, i){
+  return <MenuOption key={i}>{item}</MenuOption>
 })
 
 class Menu extends Component {
-  
+    
     onMenuOpen(){
-      switch (this.props.props.props.menu){
+      switch (this.props.nav.menu){
         case true: {
-          // console.log(this.props.props)
-            return this.props.props.props.menuClose()
+          this.menuVisable = "nav--open"
+          return this.props.nav.menuClose()
         }
         case false: {
-            return this.props.props.props.menuOpen()
+          this.menuVisable = ""
+          return this.props.nav.menuOpen()
         }
-    } 
+      } 
     }
     render(){
-        return (
-            <MenuButton onClick={this.onMenuOpen.bind(this)}>   
-                <MenuBar />
-                <MenuBar />
-            </MenuButton>
-        )
+      console.log(this)
+      return (
+        <MainMenuContainer className={this.menuVisable}>
+          <MenuOptionContainer className="menu">
+            {MenuOptions}
+          </MenuOptionContainer>
+          <MenuButton onClick={this.onMenuOpen.bind(this)}>   
+            <MenuBar />
+            <MenuBar />
+          </MenuButton>
+        </MainMenuContainer>
+      )
     }
 }
 export default Menu
