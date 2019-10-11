@@ -1,0 +1,39 @@
+/* Basic page set up */
+.AboutMe {
+    text-align: center;
+    background-color: white;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    float: right;
+  }
+.AboutMe-header {
+    background-image: 
+    radial-gradient(farthest-corner at 40px 40px,rgba(157, 173, 204,1) 25%, rgba(157, 173, 204,0.5) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: calc(10px + 1.5vmin);
+    color: white;
+    padding-left:90px;
+}
+.container-full{
+    width:100%;
+    transition: width 1.5s ease;
+}
+.container-reduced{
+    width:calc(100% - 280px);
+    transition: width 1.5s ease;
+    align-self: flex-end;
+}
+.halfContainer{
+    width:calc(50% - 80px);
+}
+.stackRow{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { fadeIn } from 'react-animations'
+import '../CSS/Hero.css';
 import styled, { keyframes, css } from 'styled-components'
 
 const animationDelay = css`

@@ -5,10 +5,11 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: auto;
+    float: right;
   }
 .Projects-header {
     background-image: 
-    radial-gradient(farthest-corner at 40px 40px,rgba(157, 173, 204,0.75) 25%, rgba(157, 173, 204,0.7021183473389356) 100%);
+    radial-gradient(farthest-corner at 40px 40px,rgba(157, 173, 204,1) 25%, rgba(157, 173, 204,0.5) 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -16,22 +17,6 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
-}
-h1{
-    font-weight: 100;
-}
-/* Mouse down Icon Positioning and Animation */
-.scroll-link-projects{
-    position: relative;
-    left: 0;
-    transform: none;
-    padding-top:10px; 
-}
-
-/* Open and Close nav */
-.nav--open{
-    left: 0px;
-    transition: left 1.5s;
 }
 .container-full{
     width:100%;

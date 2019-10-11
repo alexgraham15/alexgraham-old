@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../CSS/Projects.css'
 import styled from 'styled-components'
 
 const Options = [
@@ -48,7 +49,6 @@ const MenuButton = styled.div({
 })
 
 const MainMenuContainer = styled.div({
-  backgroundColor:"clear",
   position:"absolute",
   top:"0px",
   left:"-280px",
@@ -58,7 +58,7 @@ const MainMenuContainer = styled.div({
   transition: "left 1.5s ease",
 })
 const MenuOptionContainer = styled.div({
-  backgroundColor:"rgba(200,200,200,0.3)",
+  backgroundColor:"rgba(200,200,200,1)",
   position:"absolute",
   top:"0px",
   left:"0px",

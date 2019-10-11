@@ -1,17 +1,29 @@
-import React, { Component } from 'react'
-import { fadeIn, fadeOut } from 'react-animations'
+import React, { Component, lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import styled, { keyframes, css } from 'styled-components'
-import '../CSS/Hero.css'
+import '../../index.css'
 import { connect } from 'react-redux'
 import { userScrollStart, userScrollFinish, userPageNumberIncrease } from '../../Actions/scrollActions'
 import { openMenu, closeMenu } from '../../Actions/menuActions'
 import { bindActionCreators } from 'redux'
 import Hero from './heroComponent'
 import Projects from './Projects'
+import AboutMe from './AboutMe'
+import CV from './CV'
+import Contact from './Contact'
 import Menu from './menuComponent'
-const supportsHistory = 'pushState' in window.history;
+// const HeroPromise = import("./heroComponent");
+// const Hero = React.lazy(() => HeroPromise);
+// const ProjectsPromise = import("./Projects");
+// const Projects = React.lazy(() => ProjectsPromise);
+// const AboutMePromise = import("./AboutMe");
+// const AboutMe = React.lazy(() => AboutMePromise);
+// const CVPromise = import("./CV");
+// const CV = React.lazy(() => CVPromise);
+// const ContactPromise = import("./Contact");
+// const Contact = React.lazy(() => ContactPromise);
+// const MenuPromise = import("./menuComponent");
+// const Menu = React.lazy(() => MenuPromise);
 
 //Connector Properties and Dispatch Events
 function mapStateToProps(store) {
@@ -32,16 +44,38 @@ function mapDispatchToProps(dispatch) {
     menuClose:bindActionCreators(closeMenu, dispatch)
   } 
 }
-//CSS Animations to fade in and out
-const animationDelay = css`
-  animation-delay:3s;
-  opacity:0;
-`
-const FadeOut = styled.div`animation: ${keyframes`${fadeOut}`} 3s forwards; height:0px;width:0px;`
-const FadeIn = styled.div`
-  animation: ${keyframes`${fadeIn}`} 3s forwards;
-  ${animationDelay}
-`
+
+const AnimatedRoute = (props) => (
+  <div style={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  }}>
+    <Route {...props} />
+  </div>
+);
+
+const AnimatedSwitch = ({ animationClassName, animationTimeout, children }) => (
+  <Route render={({ location }) => (
+    <TransitionGroup style={{
+      flex: 1,
+      position: 'relative',
+    }}>
+      <CSSTransition
+        key={location.key}
+        timeout={animationTimeout}
+        classNames={animationClassName}
+      >
+        <Switch location={location}>
+          {children}
+        </Switch>
+      </CSSTransition>
+    </TransitionGroup>
+  )} />
+);
+
 //Main Class
 class MainContainer extends Component {
   componentDidMount() {
@@ -57,67 +91,29 @@ class MainContainer extends Component {
     this.props.userPageNumberIncrease()
   }
 
-  render(){
-    // const { pathname } = this.location;
-    
+  render(){   
     return(
-      
-        <Router forceRefresh={!supportsHistory} render={({ location }) => {
-          const { pathname } = location;
-          return (
-            // <Route path="/" render={(props) => <Menu {...props} nav={this.props}/>}  />
-            <TransitionGroup>
-              <CSSTransition 
-                key={pathname}
-                classNames="page"
-                timeout={{
-                  enter: 1000,
-                  exit: 1000,
-                }}
-              >
-          
-
-            <div className="App">
-              <Switch>
-                <Route exact path="/" render={(props) => <Hero className={"Hero "+this.props.menuVisable} {...props} nav={this.props}/>}  />
-                <Route exact path="/AboutMe" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}/>
-                <Route exact path="/Projects" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}/>
-                <Route exact path="/CV" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}/>
-                <Route exact path="/Contact" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}/>
-              </Switch>
-              </div>
-            </CSSTransition>
-          </TransitionGroup>
-          )}}
-          />
-        
-   
+      <Router>
+        {/* <Suspense fallback={<h1>Still Loading…</h1>}> */}
+        <Route path="/" render={(props) => <Menu {...props} nav={this.props}/>}  />
+        <div className="App">
+        <AnimatedSwitch 
+          animationClassName="page-slide" 
+          animationTimeout={1000}
+        >
+            <AnimatedRoute  exact path="/" render={(props) => <Hero className={"Hero "+this.props.menuVisable} {...props} nav={this.props}/>}  />
+            <AnimatedRoute  exact path="/AboutMe" render={(props) => <AboutMe className={"AboutMe "+this.props.menuVisable} {...props} nav={this.props}/>}/>
+            <AnimatedRoute  exact path="/Projects" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}/>
+            <AnimatedRoute  exact path="/CV" render={(props) => <CV className={"CV "+this.props.menuVisable} {...props} nav={this.props}/>}/>
+            <AnimatedRoute  exact path="/Contact" render={(props) => <Contact className={"Contact "+this.props.menuVisable} {...props} nav={this.props}/>}/>
+          </AnimatedSwitch>
+          </div>
+          {/* </Suspense> */}
+      </Router>
     )
-    // if(!this.props.scrolling && this.props.position == 0){
-    //   return(
-    //     <div className="App" ref={el => (this.instance = el)}  onWheel = {(e) => this.componentWillScroll(e)}>
-    //       <Menu {...this.props}/>
-    //       <Hero className={"Hero "+this.props.menuVisable} {...this.props}></Hero> 
-    //     </div>
-    //   )
-    // }else if(this.props.scrolling && this.props.position == 1){
-    //   return(
-    //     <div className="App" ref={el => (this.instance = el)}  onWheel = {(e) => this.componentWillScroll(e)}>
-    //       <Menu {...this.props}/>
-    //       {/* <FadeOut className={this.props.menuVisable}>
-    //         <Hero className="Hero" {...this.props}></Hero>
-    //       </FadeOut> */}
-    //       {/* <FadeIn className={"Projects "+this.props.menuVisable}> */}
-    //         <Projects className={"Projects "+this.props.menuVisable} {...this.props}></Projects>
-    //       {/* </FadeIn> */}
-    //     </div>
-    //   )
-    // }else{
-    //   return(
-    //     <div>End</div>
-    //   )
-    // }
   }
 }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer)
