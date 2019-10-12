@@ -99,7 +99,7 @@ class MainContainer extends Component {
         <div className="App">
         <AnimatedSwitch 
           animationClassName="page-slide" 
-          animationTimeout={1000}
+          animationTimeout={500}
         >
             <AnimatedRoute  exact path="/" render={(props) => <Hero className={"Hero "+this.props.menuVisable} {...props} nav={this.props}/>}  />
             <AnimatedRoute  exact path="/AboutMe" render={(props) => <AboutMe className={"AboutMe "+this.props.menuVisable} {...props} nav={this.props}/>}/>

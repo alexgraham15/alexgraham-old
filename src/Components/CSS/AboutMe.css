@@ -19,21 +19,3 @@
     color: white;
     padding-left:90px;
 }
-.container-full{
-    width:100%;
-    transition: width 1.5s ease;
-}
-.container-reduced{
-    width:calc(100% - 280px);
-    transition: width 1.5s ease;
-    align-self: flex-end;
-}
-.halfContainer{
-    width:calc(50% - 80px);
-}
-.stackRow{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
